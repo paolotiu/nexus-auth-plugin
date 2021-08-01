@@ -66,14 +66,16 @@ exports.authPlugin = function (_a) {
                             if (!withAuth) {
                                 return [2 /*return*/, next(root, args, ctx, info)];
                             }
-                            if (!(typeof withAuth === 'function')) return [3 /*break*/, 1];
-                            isValid = withAuth(root, args, ctx, info);
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, defaultAuthorize(root, args, ctx, info)];
-                        case 2:
-                            isValid = _c.sent();
-                            _c.label = 3;
+                            if (!(typeof withAuth === 'function')) return [3 /*break*/, 2];
+                            return [4 /*yield*/, withAuth(root, args, ctx, info)];
+                        case 1:
+                            isValid = (_c.sent());
+                            return [3 /*break*/, 4];
+                        case 2: return [4 /*yield*/, defaultAuthorize(root, args, ctx, info)];
                         case 3:
+                            isValid = _c.sent();
+                            _c.label = 4;
+                        case 4:
                             if (!isValid) {
                                 throw new Error('Not Authorized');
                             }

@@ -27,6 +27,16 @@ export type AuthResolver<TypeName extends string, FieldName extends string> = (
   info: GraphQLResolveInfo
 ) => MaybePromise<boolean | Error>;
 
+export type LikeAuthResolver<
+  TypeName extends string = '',
+  FieldName extends string = ''
+> = (
+  root: SourceValue<TypeName>,
+  args: ArgsValue<TypeName, FieldName>,
+  context: GetGen<'context'>,
+  info: GraphQLResolveInfo
+) => MaybePromise<boolean | Error>;
+
 export type DefaultAuthResolver = (
   root: any,
   args: any,
@@ -44,7 +54,8 @@ export const authPlugin = ({ defaultAuthorize }: AuthPluginConfig) =>
     fieldDefTypes,
     onCreateFieldResolver: (config) => {
       return async (root, args, ctx, info, next) => {
-        const withAuth = config.fieldConfig.extensions?.nexus?.config.withAuth;
+        const withAuth = config.fieldConfig.extensions?.nexus?.config
+          .withAuth as LikeAuthResolver;
         let isValid = true;
 
         if (!withAuth) {
@@ -52,7 +63,7 @@ export const authPlugin = ({ defaultAuthorize }: AuthPluginConfig) =>
         }
 
         if (typeof withAuth === 'function') {
-          isValid = withAuth(root, args, ctx, info) as boolean;
+          isValid = (await withAuth(root, args, ctx, info)) as boolean;
         } else {
           isValid = await defaultAuthorize(root, args, ctx, info);
         }
