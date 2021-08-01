@@ -1,6 +1,6 @@
 {
   "name": "nexus-auth-plugin",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Paolo Tiu <paolotiu17@gmail.com>",
