@@ -62,6 +62,20 @@ export const authPlugin = ({ defaultAuthorize }: AuthPluginConfig) =>
           return next(root, args, ctx, info);
         }
 
+        // If it does have this field, but it's not a function, it's wrong - let's provide a warning
+        if (typeof withAuth !== 'function') {
+          console.error(
+            new Error(
+              `The authorize property provided to ${
+                config.fieldConfig.name
+              } with type ${
+                config.fieldConfig.type
+              } should be a function, saw ${typeof withAuth}`
+            )
+          );
+          return;
+        }
+
         if (typeof withAuth === 'function') {
           isValid = (await withAuth(root, args, ctx, info)) as boolean;
         } else {
