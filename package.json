@@ -35,5 +35,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/paolotiu/nexus-auth-plugin.git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
