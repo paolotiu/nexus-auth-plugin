@@ -1,0 +1,7 @@
+{
+  "extends": "eslint-config-tiu",
+  "rules": {
+    "no-console": "off",
+    "consistent-return": "off"
+  }
+}

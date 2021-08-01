@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "lib": ["ES2020", "DOM"],
     "declaration": true,
     "outDir": "./dist",
     "baseUrl": "src",
@@ -11,7 +12,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "removeComments": true
+    "removeComments": true,
+    "preserveSymlinks": true
   },
   "exclude": ["examples", "dist", "tests"]
 }
