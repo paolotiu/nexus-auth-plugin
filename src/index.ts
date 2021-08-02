@@ -98,7 +98,7 @@ export const authPlugin = ({
         let toComplete;
 
         try {
-          toComplete = withAuth
+          toComplete = typeof withAuth === 'function' 
             ? withAuth(root, args, ctx, info)
             : defaultAuthorize(root, args, ctx, info);
         } catch (e) {
