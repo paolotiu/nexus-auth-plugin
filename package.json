@@ -2,6 +2,7 @@
   "name": "nexus-auth-plugin",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "version": "1.0.1",
   "author": "Paolo Tiu <paolotiu17@gmail.com>",
   "license": "MIT",
   "files": [
@@ -39,6 +40,5 @@
     "branches": [
       "main"
     ]
-  },
-  "version": "1.0.0"
+  }
 }
